@@ -1,0 +1,14 @@
+quarkus:
+  datasource:
+    db-kind: h2
+    jdbc:
+      url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+  swagger-ui:
+    always-include: true
+
+patate: "salut"
