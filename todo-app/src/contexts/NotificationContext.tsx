@@ -1,5 +1,6 @@
 // contexts/NotificationContext.tsx
 import React, {createContext, useContext, useCallback, useState, type ReactNode} from 'react';
+import { useTranslation } from 'react-i18next';
 
 export type NotificationType = 'success' | 'error' | 'info' | 'warning';
 
@@ -69,6 +70,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
                                                                           }) => {
     const [notifications, setNotifications] = useState<Notification[]>([]);
     const [recentErrors] = useState<Set<string>>(new Set());
+    const { t } = useTranslation();
 
     const addNotification = useCallback((notification: Omit<Notification, 'id'>) => {
         const id = Date.now().toString();
@@ -113,37 +115,37 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
         addNotification({
             type: 'success',
             message,
-            title: title || 'Success',
+            title: title || t('notifications.success'),
             duration
         });
-    }, [addNotification]);
+    }, [addNotification, t]);
 
     const showError = useCallback((message: string, title?: string, duration: number = DEFAULT_DURATIONS.error) => {
         addNotification({
             type: 'error',
             message,
-            title: title || 'Error',
+            title: title || t('notifications.error'),
             duration
         });
-    }, [addNotification]);
+    }, [addNotification, t]);
 
     const showInfo = useCallback((message: string, title?: string, duration: number = DEFAULT_DURATIONS.info) => {
         addNotification({
             type: 'info',
             message,
-            title: title || 'Information',
+            title: title || t('notifications.info'),
             duration
         });
-    }, [addNotification]);
+    }, [addNotification, t]);
 
     const showWarning = useCallback((message: string, title?: string, duration: number = DEFAULT_DURATIONS.warning) => {
         addNotification({
             type: 'warning',
             message,
-            title: title || 'Warning',
+            title: title || t('notifications.warning'),
             duration
         });
-    }, [addNotification]);
+    }, [addNotification, t]);
 
     const handleHttpError = useCallback((error: unknown) => {
         console.error('HTTP Error:', error);
@@ -154,25 +156,25 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
                 // @ts-ignore
                 const status = error.response?.status;
                 // @ts-ignore
-                const errorMessage = error.response?.data?.message || error.message || 'An error occurred';
+                const errorMessage = error.response?.data?.message || error.message || t('errors.unknownError');
 
                 switch (status) {
                     case 400:
-                        showError(`Invalid request: ${errorMessage}`, 'Error 400');
+                        showError(t('errors.invalidRequest', { message: errorMessage }), t('notifications.error') + ' 400');
                         break;
                     case 401:
-                        showError('You must be logged in to perform this action', 'Unauthorized');
+                        showError(t('errors.unauthorized'), t('notifications.error'));
                         break;
                     case 403:
-                        showError('You don\'t have the necessary permissions', 'Access Denied');
+                        showError(t('errors.forbidden'), t('notifications.error'));
                         break;
                     case 404:
-                        showError('The requested resource was not found', 'Resource Not Found');
+                        showError(t('errors.notFound'), t('notifications.error'));
                         break;
                     case 500:
                     case 502:
                     case 503:
-                        showError('The server encountered an error. Please try again later.', 'Server Error');
+                        showError(t('errors.serverError'), t('notifications.error'));
                         break;
                     default:
                         if (errorMessage.includes('Network Error') ||
@@ -180,24 +182,24 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
                             error.code === 'ERR_NETWORK' ||
                             status === undefined) {
                             showError(
-                                'Unable to connect to the server. Please check your internet connection.',
-                                'Connection Error'
+                                t('errors.connectionError'),
+                                t('notifications.error')
                             );
                         } else {
-                            showError(errorMessage, `Error ${status || 'unknown'}`);
+                            showError(errorMessage, `${t('notifications.error')} ${status || 'unknown'}`);
                         }
                 }
             } else if (error instanceof Error) {
-                showError(getUniqueErrorMessage(error), 'Error');
+                showError(getUniqueErrorMessage(error), t('notifications.error'));
             } else {
-                showError('An unexpected error occurred', 'Error');
+                showError(t('errors.unknownError'), t('notifications.error'));
             }
         } else if (typeof error === 'string') {
-            showError(error, 'Error');
+            showError(error, t('notifications.error'));
         } else {
-            showError('An unexpected error occurred', 'Error');
+            showError(t('errors.unknownError'), t('notifications.error'));
         }
-    }, [showError]);
+    }, [showError, t]);
 
     const contextValue = {
         notifications,

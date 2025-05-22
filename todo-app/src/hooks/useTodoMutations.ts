@@ -1,13 +1,15 @@
-// hooks/useTodoMutations.ts - Compatible with TanStack Query v4+ with English messages
+// hooks/useTodoMutations.ts
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { TodoService } from '../api/generated';
 import { mapToDTO } from '../domain/mappers/todoMapper';
 import type { Todo } from '../domain/models/Todo';
 import { useNotification } from '../contexts/NotificationContext';
+import { useTranslation } from 'react-i18next';
 
 export const useTodoMutations = () => {
     const queryClient = useQueryClient();
     const { showSuccess } = useNotification();
+    const { t } = useTranslation();
 
     // Create todo
     const createTodo = useMutation({
@@ -17,7 +19,7 @@ export const useTodoMutations = () => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['todos'] });
-            showSuccess('Task created successfully');
+            showSuccess(t('notifications.taskCreated'));
         },
     });
 
@@ -55,7 +57,7 @@ export const useTodoMutations = () => {
             }
         },
         onSuccess: () => {
-            showSuccess('Task updated successfully');
+            showSuccess(t('notifications.taskUpdated'));
         },
         onSettled: () => {
             queryClient.invalidateQueries({ queryKey: ['todos'] });
@@ -102,8 +104,10 @@ export const useTodoMutations = () => {
             }
         },
         onSuccess: (_, variables) => {
-            const statusText = variables.isCompleted ? 'incomplete' : 'complete';
-            showSuccess(`Task marked as ${statusText}`);
+            const message = variables.isCompleted ?
+                t('notifications.taskMarkedIncomplete') :
+                t('notifications.taskMarkedComplete');
+            showSuccess(message);
         },
         onSettled: () => {
             queryClient.invalidateQueries({ queryKey: ['todos'] });
@@ -134,7 +138,7 @@ export const useTodoMutations = () => {
             }
         },
         onSuccess: () => {
-            showSuccess('Task deleted successfully');
+            showSuccess(t('notifications.taskDeleted'));
         },
         onSettled: () => {
             queryClient.invalidateQueries({ queryKey: ['todos'] });

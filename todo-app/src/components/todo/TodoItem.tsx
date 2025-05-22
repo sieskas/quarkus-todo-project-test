@@ -3,6 +3,7 @@ import React from 'react';
 import { CheckSquare, Square, Trash2 } from 'lucide-react';
 import { Todo } from '../../domain/models/Todo';
 import { useTodoContext } from '../../contexts/TodoContext';
+import { useTranslation } from 'react-i18next';
 
 interface TodoItemProps {
     todo: Todo;
@@ -10,6 +11,7 @@ interface TodoItemProps {
 
 export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
     const { toggleTodoCompletion, deleteTodo } = useTodoContext();
+    const { t } = useTranslation();
 
     const handleToggle = () => {
         if (todo.id !== null) {
@@ -29,7 +31,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
                 <button
                     onClick={handleToggle}
                     className="flex-shrink-0 mt-0.5 mr-3 text-gray-400 hover:text-blue-600 transition-colors"
-                    aria-label={todo.isCompleted ? "Mark as incomplete" : "Mark as complete"}
+                    aria-label={todo.isCompleted ? t('todoItem.markIncomplete') : t('todoItem.markComplete')}
                 >
                     {todo.isCompleted ? (
                         <CheckSquare size={20} className="text-blue-600" />
@@ -50,17 +52,17 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
                 </div>
 
                 <div className="ml-4 flex items-center">
-          <span className={`px-2 py-1 text-xs rounded-full ${
-              todo.isCompleted
-                  ? 'bg-blue-100 text-blue-800'
-                  : 'bg-yellow-100 text-yellow-800'
-          }`}>
-            {todo.isCompleted ? 'Completed' : 'To do'}
-          </span>
+                    <span className={`px-2 py-1 text-xs rounded-full ${
+                        todo.isCompleted
+                            ? 'bg-blue-100 text-blue-800'
+                            : 'bg-yellow-100 text-yellow-800'
+                    }`}>
+                        {todo.isCompleted ? t('todoItem.status.completed') : t('todoItem.status.todo')}
+                    </span>
                     <button
                         onClick={handleDelete}
                         className="ml-3 text-gray-400 hover:text-red-500 transition-colors"
-                        aria-label="Delete"
+                        aria-label={t('todoItem.delete')}
                     >
                         <Trash2 size={18} />
                     </button>

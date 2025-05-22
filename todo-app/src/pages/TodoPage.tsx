@@ -1,4 +1,4 @@
-// pages/TodoPage.tsx - Sans affichage d'erreur en dur
+// pages/TodoPage.tsx
 import React from 'react';
 import { Plus } from 'lucide-react';
 import { useTodoContext } from '../contexts/TodoContext';
@@ -6,6 +6,7 @@ import { TodoFilters } from '../components/todo/TodoFilters';
 import { TodoItem } from '../components/todo/TodoItem';
 import { AddTodoForm } from '../components/todo/AddTodoForm';
 import { EmptyState } from '../components/todo/EmptyState';
+import { useTranslation } from 'react-i18next';
 
 export const TodoPage: React.FC = () => {
     const {
@@ -16,14 +17,16 @@ export const TodoPage: React.FC = () => {
         setIsAddingTask
     } = useTodoContext();
 
+    const { t } = useTranslation();
+
     return (
         <div className="max-w-4xl mx-auto mt-8 px-4 pb-12">
             {/* Header with stats */}
             <div className="mb-6 flex justify-between items-end">
                 <div>
-                    <h1 className="text-3xl font-bold text-blue-600">Task Manager</h1>
+                    <h1 className="text-3xl font-bold text-blue-600">{t('app.title')}</h1>
                     <p className="text-gray-600 mt-1">
-                        {stats.total} tasks total • {stats.active} active • {stats.completed} completed
+                        {t('app.stats', { total: stats.total, active: stats.active, completed: stats.completed })}
                     </p>
                 </div>
                 <button
@@ -31,7 +34,7 @@ export const TodoPage: React.FC = () => {
                     className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors flex items-center"
                 >
                     <Plus size={18} className="mr-1" />
-                    <span>New Task</span>
+                    <span>{t('buttons.newTask')}</span>
                 </button>
             </div>
 
