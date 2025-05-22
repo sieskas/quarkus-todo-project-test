@@ -1,4 +1,4 @@
-// components/todo/TodoFilters.tsx - Utilisation du contexte
+// components/todo/TodoFilters.tsx
 import React from 'react';
 import { Search, ArrowUp, ArrowDown } from 'lucide-react';
 import { useTodoContext } from '../../contexts/TodoContext';

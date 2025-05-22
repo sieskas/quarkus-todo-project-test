@@ -1,5 +1,4 @@
 // domain/mappers/todoMapper.ts
-// domain/mappers/todoMapper.ts
 import type {TodoResponseDTO, TodoRequestDTO} from '../../api/generated';
 import {Todo} from '../models/Todo';
 

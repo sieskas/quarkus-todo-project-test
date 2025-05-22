@@ -1,4 +1,4 @@
-// contexts/TodoContext.tsx - Mise à jour pour supprimer la référence à isError
+// contexts/TodoContext.tsx
 import React, {createContext, type ReactNode, useContext, useState} from 'react';
 import { useTodos } from '../hooks/useTodos';
 import { useTodoFilters } from '../hooks/useTodoFilters';
@@ -7,9 +7,7 @@ import type { Todo } from '../domain/models/Todo';
 import type { FilterType, SortDirection } from '../hooks/useTodoFilters';
 import { useNotification } from './NotificationContext';
 
-// Interface mise à jour pour notre contexte (sans isError)
 interface TodoContextType {
-    // État des todos
     todos: Todo[];
     displayedTodos: Todo[];
     isLoading: boolean;
@@ -19,7 +17,6 @@ interface TodoContextType {
         completed: number;
     };
 
-    // État des filtres
     searchTerm: string;
     setSearchTerm: (term: string) => void;
     filter: FilterType;
@@ -27,13 +24,11 @@ interface TodoContextType {
     sortDirection: SortDirection;
     setSortDirection: (direction: SortDirection) => void;
 
-    // Mutations
     createTodo: (todo: Todo) => Promise<void>;
     updateTodo: (todo: Todo) => Promise<void>;
     toggleTodoCompletion: (todo: Todo) => Promise<void>;
     deleteTodo: (id: number) => Promise<void>;
 
-    // État d'UI
     isAddingTask: boolean;
     setIsAddingTask: (isAdding: boolean) => void;
 }
@@ -48,11 +43,8 @@ export const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
     const [isAddingTask, setIsAddingTask] = useState<boolean>(false);
     const { handleHttpError } = useNotification();
 
-    // Récupérer les todos et les statistiques
-    // Note: isError est toujours récupéré mais n'est plus exposé dans le contexte
     const { todos, isLoading, stats } = useTodos();
 
-    // Récupérer les filtres et fonctions de tri
     const {
         searchTerm,
         setSearchTerm,
@@ -63,7 +55,6 @@ export const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
         getFilteredAndSortedTodos
     } = useTodoFilters();
 
-    // Récupérer les mutations
     const {
         createTodo: createTodoMutation,
         updateTodo: updateTodoMutation,
@@ -71,17 +62,15 @@ export const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
         deleteTodo: deleteTodoMutation
     } = useTodoMutations();
 
-    // Appliquer les filtres aux todos
     const displayedTodos = getFilteredAndSortedTodos(todos);
 
-    // Wrapper les fonctions de mutation pour les simplifier et gérer les erreurs
     const createTodo = async (todo: Todo): Promise<void> => {
         try {
             await createTodoMutation.mutateAsync(todo);
             setIsAddingTask(false);
         } catch (error) {
             handleHttpError(error);
-            throw error; // Re-throw pour que le composant puisse aussi réagir si nécessaire
+            throw error;
         }
     };
 
@@ -112,7 +101,6 @@ export const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
         }
     };
 
-    // Construire l'objet de valeur du contexte
     const contextValue: TodoContextType = {
         todos,
         displayedTodos,

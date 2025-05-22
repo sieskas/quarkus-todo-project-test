@@ -1,4 +1,4 @@
-// components/todo/TodoItem.tsx - Utilisation du contexte
+// components/todo/TodoItem.tsx
 import React from 'react';
 import { CheckSquare, Square, Trash2 } from 'lucide-react';
 import { Todo } from '../../domain/models/Todo';

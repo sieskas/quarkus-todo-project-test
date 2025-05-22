@@ -1,4 +1,4 @@
-// components/todo/EmptyState.tsx - Utilisation du contexte
+// components/todo/EmptyState.tsx
 import React from 'react';
 import { Plus } from 'lucide-react';
 import { useTodoContext } from '../../contexts/TodoContext';

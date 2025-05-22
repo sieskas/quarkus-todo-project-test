@@ -23,7 +23,6 @@ export const useTodos = () => {
         },
     });
 
-    // Map DTOs to domain objects
     const todos: Todo[] = todosDTO ? todosDTO.map(mapToDomain) : [];
 
     // Calculate stats
