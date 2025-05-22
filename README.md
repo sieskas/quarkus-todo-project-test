@@ -1,79 +1,97 @@
-# demo
+# Todo App
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+A modern task management application built with **Quarkus** (backend) and **React + Vite** (frontend).
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+---
 
-## Running the application in dev mode
+## Prerequisites
 
-You can run your application in dev mode that enables live coding using:
+- Java 17
+- Node.js (latest LTS version recommended)
+- Gradle
 
-```shell script
-./gradlew quarkusDev
+---
+
+## Project Structure
+
+```bash
+./           # Backend (Quarkus)
+./todo-app   # Frontend (React + Vite)
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+---
 
-## Packaging and running the application
+## Getting Started
 
-The application can be packaged using:
+### Backend (Quarkus)
 
-```shell script
-./gradlew build
+Start the Quarkus server with hot reload:
+
+```bash
+gradle quarkusDev
 ```
 
-It produces the `quarkus-run.jar` file in the `build/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `build/quarkus-app/lib/` directory.
+The API will be available at:  
+[http://localhost:8080](http://localhost:8080)
 
-The application is now runnable using `java -jar build/quarkus-app/quarkus-run.jar`.
+---
 
-If you want to build an _über-jar_, execute the following command:
+### Frontend (React + Vite)
 
-```shell script
-./gradlew build -Dquarkus.package.jar.type=uber-jar
+Navigate to the frontend directory:
+
+```bash
+cd todo-app
 ```
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar build/*-runner.jar`.
+Install dependencies:
 
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./gradlew build -Dquarkus.native.enabled=true
+```bash
+npm install
 ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+Start the development server:
 
-```shell script
-./gradlew build -Dquarkus.native.enabled=true -Dquarkus.native.container-build=true
+```bash
+npm run dev
 ```
 
-You can then execute your native executable with: `./build/demo-1.0-SNAPSHOT-runner`
+The frontend will be available at:  
+[http://localhost:5173](http://localhost:5173)
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/gradle-tooling>.
+---
 
-## Related Guides
+## API Client Generation
 
-- Hibernate ORM ([guide](https://quarkus.io/guides/hibernate-orm)): Define your persistent model with Hibernate ORM and
-  Jakarta Persistence
-- REST ([guide](https://quarkus.io/guides/rest)): A Jakarta REST implementation utilizing build time processing and
-  Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on
-  it.
-- JDBC Driver - H2 ([guide](https://quarkus.io/guides/datasource)): Connect to the H2 database via JDBC
-- Hibernate Validator ([guide](https://quarkus.io/guides/validation)): Validate object properties (field, getter) and
-  method parameters for your beans (REST, CDI, Jakarta Persistence)
+The frontend uses **automatically generated API clients** based on the **OpenAPI specification** provided by Quarkus.
 
-## Provided Code
+### To regenerate the API client:
 
-### Hibernate ORM
+1. Ensure the backend server is running.
+2. Run the following command from the `todo-app` directory:
 
-Create your first JPA entity
+```bash
+npx openapi-typescript-codegen \
+  --input "http://127.0.0.1:8080/q/openapi" \
+  --output src/api/generated \
+  --client axios
+```
 
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
+---
 
-### REST
+## Architecture
 
-Easily start your REST Web Services
+### Backend
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+- **Quarkus** RESTful API
+- **JPA** for data persistence
+
+### Frontend
+
+- **React** with **TypeScript**
+- **TanStack Query** for data fetching and mutations
+- **React Context** for state management
+- **TypeScript** for type safety
+- **Custom notification system**
+
+---
