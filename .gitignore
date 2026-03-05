@@ -40,3 +40,34 @@ nb-configuration.xml
 # TLS Certificates
 .certs/
 /todo-app/node_modules/
+/expo-todo-app/node_modules/
+
+# Expo
+/expo-todo-app/.expo/
+/expo-todo-app/dist/
+/expo-todo-app/web-build/
+/expo-todo-app/expo-env.d.ts
+/expo-todo-app/.kotlin/
+/expo-todo-app/.metro-health-check*
+/expo-todo-app/ios/
+/expo-todo-app/android/
+/expo-todo-app/api-spec.json
+
+# Native certs & keys (all projects)
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# npm/yarn debug logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# Local env secrets
+.env*.local

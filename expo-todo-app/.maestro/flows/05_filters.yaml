@@ -1,0 +1,18 @@
+appId: host.exp.Exponent
+name: "Filter todos by status"
+tags:
+  - smoke
+---
+- runFlow: _launch.yaml
+
+# Filter Active
+- tapOn: "Active"
+- assertVisible: "Active"
+
+# Filter Completed
+- tapOn: "Completed"
+- assertVisible: "Completed"
+
+# Back to All
+- tapOn: "All"
+- assertVisible: "All"

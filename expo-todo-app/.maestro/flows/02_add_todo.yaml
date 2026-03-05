@@ -1,0 +1,17 @@
+appId: host.exp.Exponent
+name: "Add a new todo"
+tags:
+  - smoke
+---
+- runFlow: _launch.yaml
+- tapOn: "+"
+- assertVisible: "Add a new task"
+- assertNotVisible: "All"
+- tapOn:
+    text: "Task name"
+- inputText: "E2E Test Task"
+- tapOn:
+    text: "Detailed description (optional)"
+- inputText: "Created by Maestro"
+- tapOn: "Add Task"
+- assertVisible: "E2E Test Task"

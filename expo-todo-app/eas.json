@@ -1,0 +1,61 @@
+{
+  "build": {
+    "dev": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_ENV": "dev",
+        "EXPO_PUBLIC_TASK_MANAGER_API_URL": "http://192.168.1.x:8080",
+        "EXPO_PUBLIC_TASK_MANAGER_MOCK_ENABLED": "false"
+      }
+    },
+    "dev-mock": {
+      "extends": "dev",
+      "env": {
+        "EXPO_PUBLIC_ENV": "dev-mock",
+        "EXPO_PUBLIC_TASK_MANAGER_API_URL": "http://192.168.1.x:8080",
+        "EXPO_PUBLIC_TASK_MANAGER_MOCK_ENABLED": "true"
+      }
+    },
+    "qa": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_ENV": "qa",
+        "EXPO_PUBLIC_TASK_MANAGER_API_URL": "https://qa.monserveur.com",
+        "EXPO_PUBLIC_TASK_MANAGER_MOCK_ENABLED": "false"
+      }
+    },
+    "qa-mock": {
+      "extends": "qa",
+      "env": {
+        "EXPO_PUBLIC_ENV": "qa-mock",
+        "EXPO_PUBLIC_TASK_MANAGER_API_URL": "https://qa.monserveur.com",
+        "EXPO_PUBLIC_TASK_MANAGER_MOCK_ENABLED": "true"
+      }
+    },
+    "test": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_ENV": "test",
+        "EXPO_PUBLIC_TASK_MANAGER_API_URL": "http://localhost:8080",
+        "EXPO_PUBLIC_TASK_MANAGER_MOCK_ENABLED": "true"
+      }
+    },
+    "staging": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_ENV": "staging",
+        "EXPO_PUBLIC_TASK_MANAGER_API_URL": "https://staging.monserveur.com",
+        "EXPO_PUBLIC_TASK_MANAGER_MOCK_ENABLED": "false"
+      }
+    },
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_ENV": "production",
+        "EXPO_PUBLIC_TASK_MANAGER_API_URL": "https://api.monserveur.com",
+        "EXPO_PUBLIC_TASK_MANAGER_MOCK_ENABLED": "false"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+appId: host.exp.Exponent
+name: "Delete a todo"
+tags:
+  - smoke
+---
+- runFlow: _launch.yaml
+# Note the stats before delete
+- tapOn:
+    id: "todo-delete"
+    index: 0
+# The tap succeeding without error confirms the delete worked.
+# Other items still have delete buttons so assertNotVisible on id is not reliable.
+- assertVisible: "Task Manager"

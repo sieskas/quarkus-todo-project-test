@@ -1,0 +1,18 @@
+appId: host.exp.Exponent
+name: "Search todos"
+tags:
+  - smoke
+---
+- runFlow: _launch.yaml
+
+# Type in search field
+- tapOn:
+    text: "Search..."
+- inputText: "zzznoresult"
+- assertVisible: "No results match your search"
+
+# Clear search → list comes back
+- tapOn:
+    text: "Search..."
+- eraseText: 20
+- assertNotVisible: "No results match your search"

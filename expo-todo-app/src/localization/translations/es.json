@@ -1,0 +1,61 @@
+{
+  "app": {
+    "title": "Administrador de Tareas",
+    "stats": "{{total}} tareas en total • {{active}} activas • {{completed}} completadas"
+  },
+  "todoFilters": {
+    "search": "Buscar...",
+    "all": "Todas",
+    "active": "Activas",
+    "completed": "Completadas",
+    "sortAscending": "Ordenar ascendente",
+    "sortDescending": "Ordenar descendente"
+  },
+  "todoItem": {
+    "markComplete": "Marcar como completa",
+    "markIncomplete": "Marcar como incompleta",
+    "delete": "Eliminar",
+    "status": {
+      "completed": "Completada",
+      "todo": "Pendiente"
+    }
+  },
+  "emptyState": {
+    "noTasks": "Aún no hay tareas",
+    "noResults": "Ningún resultado coincide con tu búsqueda",
+    "addTask": "Añadir una tarea"
+  },
+  "addTodoForm": {
+    "title": "Añadir una nueva tarea",
+    "titleLabel": "Título*",
+    "titlePlaceholder": "Nombre de la tarea",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "Descripción detallada (opcional)",
+    "cancel": "Cancelar",
+    "add": "Añadir Tarea",
+    "adding": "Añadiendo..."
+  },
+  "buttons": {
+    "newTask": "Nueva Tarea"
+  },
+  "notifications": {
+    "success": "Éxito",
+    "error": "Error",
+    "info": "Información",
+    "warning": "Advertencia",
+    "taskCreated": "Tarea creada exitosamente",
+    "taskUpdated": "Tarea actualizada exitosamente",
+    "taskDeleted": "Tarea eliminada exitosamente",
+    "taskMarkedComplete": "Tarea marcada como completa",
+    "taskMarkedIncomplete": "Tarea marcada como incompleta"
+  },
+  "errors": {
+    "invalidRequest": "Solicitud inválida: {{message}}",
+    "unauthorized": "Debes iniciar sesión para realizar esta acción",
+    "forbidden": "No tienes los permisos necesarios",
+    "notFound": "El recurso solicitado no fue encontrado",
+    "serverError": "El servidor encontró un error. Por favor, inténtalo de nuevo más tarde.",
+    "connectionError": "No se puede conectar al servidor. Por favor, verifica tu conexión a internet.",
+    "unknownError": "Ocurrió un error inesperado"
+  }
+}

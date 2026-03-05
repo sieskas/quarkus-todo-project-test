@@ -1,0 +1,61 @@
+{
+  "app": {
+    "title": "Task Manager",
+    "stats": "{{total}} tasks total • {{active}} active • {{completed}} completed"
+  },
+  "todoFilters": {
+    "search": "Search...",
+    "all": "All",
+    "active": "Active",
+    "completed": "Completed",
+    "sortAscending": "Sort ascending",
+    "sortDescending": "Sort descending"
+  },
+  "todoItem": {
+    "markComplete": "Mark as complete",
+    "markIncomplete": "Mark as incomplete",
+    "delete": "Delete",
+    "status": {
+      "completed": "Completed",
+      "todo": "To do"
+    }
+  },
+  "emptyState": {
+    "noTasks": "No tasks yet",
+    "noResults": "No results match your search",
+    "addTask": "Add a task"
+  },
+  "addTodoForm": {
+    "title": "Add a new task",
+    "titleLabel": "Title*",
+    "titlePlaceholder": "Task name",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Detailed description (optional)",
+    "cancel": "Cancel",
+    "add": "Add Task",
+    "adding": "Adding..."
+  },
+  "buttons": {
+    "newTask": "New Task"
+  },
+  "notifications": {
+    "success": "Success",
+    "error": "Error",
+    "info": "Information",
+    "warning": "Warning",
+    "taskCreated": "Task created successfully",
+    "taskUpdated": "Task updated successfully",
+    "taskDeleted": "Task deleted successfully",
+    "taskMarkedComplete": "Task marked as complete",
+    "taskMarkedIncomplete": "Task marked as incomplete"
+  },
+  "errors": {
+    "invalidRequest": "Invalid request: {{message}}",
+    "unauthorized": "You must be logged in to perform this action",
+    "forbidden": "You don't have the necessary permissions",
+    "notFound": "The requested resource was not found",
+    "serverError": "The server encountered an error. Please try again later.",
+    "connectionError": "Unable to connect to the server. Please check your internet connection.",
+    "unknownError": "An unexpected error occurred"
+  }
+}

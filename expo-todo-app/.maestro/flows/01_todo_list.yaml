@@ -1,0 +1,9 @@
+appId: host.exp.Exponent
+name: "Todo list is displayed"
+tags:
+  - smoke
+---
+- runFlow: _launch.yaml
+- assertVisible: "All"
+- assertVisible: "Active"
+- assertVisible: "Completed"

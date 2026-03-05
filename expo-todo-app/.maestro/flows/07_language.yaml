@@ -1,0 +1,14 @@
+appId: host.exp.Exponent
+name: "Switch language"
+tags:
+  - smoke
+---
+- runFlow: _launch.yaml
+
+# Switch to French
+- tapOn: "FR"
+- assertVisible: "Gestionnaire de Tâches"
+
+# Switch back to English
+- tapOn: "EN"
+- assertVisible: "Task Manager"

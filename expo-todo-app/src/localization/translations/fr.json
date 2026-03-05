@@ -1,0 +1,61 @@
+{
+  "app": {
+    "title": "Gestionnaire de Tâches",
+    "stats": "{{total}} tâches au total • {{active}} actives • {{completed}} terminées"
+  },
+  "todoFilters": {
+    "search": "Rechercher...",
+    "all": "Toutes",
+    "active": "Actives",
+    "completed": "Terminées",
+    "sortAscending": "Tri croissant",
+    "sortDescending": "Tri décroissant"
+  },
+  "todoItem": {
+    "markComplete": "Marquer comme terminée",
+    "markIncomplete": "Marquer comme non terminée",
+    "delete": "Supprimer",
+    "status": {
+      "completed": "Terminée",
+      "todo": "À faire"
+    }
+  },
+  "emptyState": {
+    "noTasks": "Aucune tâche pour le moment",
+    "noResults": "Aucun résultat ne correspond à votre recherche",
+    "addTask": "Ajouter une tâche"
+  },
+  "addTodoForm": {
+    "title": "Ajouter une nouvelle tâche",
+    "titleLabel": "Titre*",
+    "titlePlaceholder": "Nom de la tâche",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Description détaillée (optionnelle)",
+    "cancel": "Annuler",
+    "add": "Ajouter",
+    "adding": "Ajout en cours..."
+  },
+  "buttons": {
+    "newTask": "Nouvelle Tâche"
+  },
+  "notifications": {
+    "success": "Succès",
+    "error": "Erreur",
+    "info": "Information",
+    "warning": "Avertissement",
+    "taskCreated": "Tâche créée avec succès",
+    "taskUpdated": "Tâche mise à jour avec succès",
+    "taskDeleted": "Tâche supprimée avec succès",
+    "taskMarkedComplete": "Tâche marquée comme terminée",
+    "taskMarkedIncomplete": "Tâche marquée comme non terminée"
+  },
+  "errors": {
+    "invalidRequest": "Requête invalide : {{message}}",
+    "unauthorized": "Vous devez être connecté pour effectuer cette action",
+    "forbidden": "Vous n'avez pas les permissions nécessaires",
+    "notFound": "La ressource demandée n'a pas été trouvée",
+    "serverError": "Le serveur a rencontré une erreur. Veuillez réessayer plus tard.",
+    "connectionError": "Impossible de se connecter au serveur. Veuillez vérifier votre connexion internet.",
+    "unknownError": "Une erreur inattendue s'est produite"
+  }
+}
