@@ -1,4 +1,3 @@
-// pages/TodoPage.tsx
 import React from 'react';
 import { Plus } from 'lucide-react';
 import { useTodoContext } from '../contexts/TodoContext';
@@ -6,6 +5,7 @@ import { TodoFilters } from '../components/todo/TodoFilters';
 import { TodoItem } from '../components/todo/TodoItem';
 import { AddTodoForm } from '../components/todo/AddTodoForm';
 import { EmptyState } from '../components/todo/EmptyState';
+import { WeatherWidget } from '../components/ui/WeatherWidget';
 import { useTranslation } from 'react-i18next';
 
 export const TodoPage: React.FC = () => {
@@ -29,13 +29,16 @@ export const TodoPage: React.FC = () => {
                         {t('app.stats', { total: stats.total, active: stats.active, completed: stats.completed })}
                     </p>
                 </div>
-                <button
-                    onClick={() => setIsAddingTask(true)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors flex items-center"
-                >
-                    <Plus size={18} className="mr-1" />
-                    <span>{t('buttons.newTask')}</span>
-                </button>
+                <div className="flex items-center gap-3">
+                    <WeatherWidget />
+                    <button
+                        onClick={() => setIsAddingTask(true)}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors flex items-center"
+                    >
+                        <Plus size={18} className="mr-1" />
+                        <span>{t('buttons.newTask')}</span>
+                    </button>
+                </div>
             </div>
 
             {/* Filters component */}
