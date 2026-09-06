@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { TodoPage } from '../../pages/TodoPage';
 import { Todo } from '../../domain/models/Todo';

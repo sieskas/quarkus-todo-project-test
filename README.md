@@ -158,3 +158,33 @@ Browser / Mobile
 ```
 
 Both frontends share the same architecture: outcall adapters, domain services, hooks, and contexts — mirrored between web and mobile.
+
+## Local WSL development
+
+Use Java 17 for the backend. With the local JDK installed under ~/dev/tools/jdk17:
+
+~~~bash
+export JAVA_HOME="$HOME/dev/tools/jdk17"
+export PATH="$JAVA_HOME/bin:$HOME/.local/node/bin:$PATH"
+./gradlew quarkusDev
+~~~
+
+In a second terminal, start the web app against the real API with simulated weather (no weather API key needed):
+
+~~~bash
+cd todo-app
+npm ci
+VITE_TASK_MANAGER_MOCK_ENABLED=false VITE_WEATHER_MOCK_ENABLED=true npm run dev -- --host 0.0.0.0 --port 5173 --strictPort
+~~~
+
+Open http://localhost:5173. The API and Swagger UI are on http://localhost:8080/api/v1/todos and http://localhost:8080/q/swagger-ui.
+The H2 database is in memory; local tasks are reset when the backend restarts.
+
+On Ubuntu 26.04, the pinned Playwright version does not recognize the OS yet. Its Ubuntu 24.04 Chromium build was verified locally.
+Stop the web server before running these tests so Playwright starts its own mock server:
+
+~~~bash
+cd todo-app
+PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64 npx playwright install chromium
+npm run test:e2e
+~~~

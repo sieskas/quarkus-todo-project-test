@@ -1,4 +1,4 @@
-import { WeatherAdapter } from './WeatherAdapter';
+import { WeatherAdapter, type IWeatherAdapter } from './WeatherAdapter';
 import { MockWeatherAdapter } from './mocks/MockWeatherAdapter';
 
 export type { IWeatherAdapter, WeatherCity, WeatherData } from './WeatherAdapter';

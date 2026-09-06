@@ -71,3 +71,6 @@ yarn-error.*
 
 # Local env secrets
 .env*.local
+
+# Web build output
+/todo-app/dist/
