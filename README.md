@@ -216,3 +216,22 @@ Set WEATHER_API_KEY in the application runtime environment only.
 The demo database is H2 in memory and is reset whenever this application restarts.
 
 The public Docker demo uses simulated weather (VITE_WEATHER_MOCK_ENABLED=true). No weather API key is needed or deployed. Task operations use the real Quarkus API and H2.
+
+### Daily demo reset (Dokploy Schedule)
+
+Dokploy's native Schedule **Todo daily reset** runs at midnight with timezone
+`America/Toronto` (same civil time as New York, including DST).
+Type: **Dokploy Server**; enabled; daily cron: `0 0 * * *`.
+
+Script field (also versioned in `deploy/restart-todo-demo.sh`):
+```sh
+docker service update --force --detach=false app-generate-1080p-circuit-rd13m8
+```
+
+This recreates only Todo's Docker Swarm task, resetting in-memory H2 data.
+Expect a brief demo interruption. The VM, Dokploy and portfolio remain running.
+Weather is simulated; no provider key is needed.
+Manage, disable or manually run it from Dokploy's Schedules and inspect its logs.
+No systemd timer or host cron is installed.
+If the Dokploy application is recreated, update the service name in the schedule
+and this script.
