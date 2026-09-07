@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
+import { OpenAPI } from './api/generated'
+
+OpenAPI.BASE = import.meta.env.VITE_TASK_MANAGER_API_URL || 'http://localhost:8080';
 import './index.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 

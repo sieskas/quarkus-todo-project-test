@@ -200,3 +200,17 @@ The backend uses OpenWeatherMap, with a five-second request timeout.
 Client mock adapters still support offline development.
 The backend integration tests use a local HTTP stub and need no real API key.
 Shared caching and rate limiting remain future work before wider public use.
+
+## Public demo under /demo-todo/
+
+The root Dockerfile builds Vite and embeds its static files in Quarkus.
+Both the browser application and API are served by port 8080:
+- /demo-todo/ : application
+- /demo-todo/api/v1/todos : task API
+- /demo-todo/api/v1/weather : weather API
+
+In Dokploy, build Dockerfile from the repository root and route
+www.romain-godard.com with path /demo-todo to port 8080. Do not strip the path.
+Keep the existing portfolio route unchanged. Use the existing custom TLS certificate.
+Set WEATHER_API_KEY in the application runtime environment only.
+The demo database is H2 in memory and is reset whenever this application restarts.
