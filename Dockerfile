@@ -3,7 +3,7 @@ WORKDIR /web
 COPY todo-app/package*.json ./
 RUN npm ci
 COPY todo-app/ ./
-ENV VITE_BASE_PATH=/demo-todo/ VITE_TASK_MANAGER_API_URL=/demo-todo VITE_ENV=production VITE_TASK_MANAGER_MOCK_ENABLED=false VITE_WEATHER_MOCK_ENABLED=false
+ENV VITE_BASE_PATH=/demo-todo/ VITE_TASK_MANAGER_API_URL=/demo-todo VITE_ENV=production VITE_TASK_MANAGER_MOCK_ENABLED=false VITE_WEATHER_MOCK_ENABLED=true
 RUN npm run build
 
 FROM eclipse-temurin:17-jdk AS build

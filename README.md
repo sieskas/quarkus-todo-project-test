@@ -214,3 +214,5 @@ www.romain-godard.com with path /demo-todo to port 8080. Do not strip the path.
 Keep the existing portfolio route unchanged. Use the existing custom TLS certificate.
 Set WEATHER_API_KEY in the application runtime environment only.
 The demo database is H2 in memory and is reset whenever this application restarts.
+
+The public Docker demo uses simulated weather (VITE_WEATHER_MOCK_ENABLED=true). No weather API key is needed or deployed. Task operations use the real Quarkus API and H2.
