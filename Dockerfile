@@ -18,6 +18,6 @@ FROM eclipse-temurin:17-jre
 WORKDIR /app
 COPY --from=build --chown=10001:10001 /source/build/quarkus-app/ ./
 USER 10001
-ENV QUARKUS_HTTP_HOST=0.0.0.0 QUARKUS_HTTP_ROOT_PATH=/demo-todo QUARKUS_SWAGGER_UI_ALWAYS_INCLUDE=false
+ENV QUARKUS_HTTP_HOST=0.0.0.0 QUARKUS_HTTP_ROOT_PATH=/demo-todo QUARKUS_SWAGGER_UI_ALWAYS_INCLUDE=false QUARKUS_HTTP_CORS_ORIGINS=https://www.romain-godard.com
 EXPOSE 8080
 ENTRYPOINT ["java","-XX:MaxRAMPercentage=70","-jar","quarkus-run.jar"]
