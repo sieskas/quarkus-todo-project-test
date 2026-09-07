@@ -1,3 +1,4 @@
+import type { ITodoAdapter } from "./TodoAdapter";
 import { TodoAdapter } from './TodoAdapter';
 import { MockTodoAdapter } from './mocks/MockTodoAdapter';
 

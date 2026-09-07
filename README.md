@@ -188,3 +188,15 @@ cd todo-app
 PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64 npx playwright install chromium
 npm run test:e2e
 ~~~
+
+## Weather integration
+
+Web and Expo call `GET /api/v1/weather?lat=45.5&lon=-73.6` on the Quarkus API.
+Set `WEATHER_API_KEY` on the **backend only** (environment variable or root .env).
+Never configure a weather key in VITE_ or EXPO_PUBLIC_ variables.
+Without a key the endpoint returns 503. Invalid coordinates return 400;
+provider failures, timeouts and malformed responses return 502.
+The backend uses OpenWeatherMap, with a five-second request timeout.
+Client mock adapters still support offline development.
+The backend integration tests use a local HTTP stub and need no real API key.
+Shared caching and rate limiting remain future work before wider public use.

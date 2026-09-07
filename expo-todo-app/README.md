@@ -105,7 +105,6 @@ Variables are loaded via `dotenv-cli` in cascade. Later files override earlier o
 ### Required secrets — `.env.local`
 
 ```
-EXPO_PUBLIC_OPENWEATHER_API_KEY=your_key_here
 ```
 
 ### Available variables
@@ -115,8 +114,6 @@ EXPO_PUBLIC_OPENWEATHER_API_KEY=your_key_here
 | `EXPO_PUBLIC_ENV` | Environment label shown in app version (local / test / staging…) |
 | `EXPO_PUBLIC_TASK_MANAGER_API_URL` | Backend base URL |
 | `EXPO_PUBLIC_TASK_MANAGER_MOCK_ENABLED` | Enable todo mock adapter |
-| `EXPO_PUBLIC_OPENWEATHER_API_URL` | OpenWeatherMap base URL |
-| `EXPO_PUBLIC_OPENWEATHER_API_KEY` | OpenWeatherMap API key |
 | `EXPO_PUBLIC_WEATHER_MOCK_ENABLED` | Enable weather mock adapter |
 
 ---
@@ -130,7 +127,6 @@ npm install
 Create `.env.local` with your secrets:
 
 ```
-EXPO_PUBLIC_OPENWEATHER_API_KEY=your_key_here
 ```
 
 ### Run in mock mode (no backend required)
@@ -228,3 +224,5 @@ npm run generate
 ```
 
 This fetches the OpenAPI spec and regenerates `src/outcall/taskmanager/api/generated/`.
+
+Weather requests use the same Quarkus API URL as tasks. Configure WEATHER_API_KEY only on the backend.

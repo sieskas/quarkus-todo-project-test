@@ -1,3 +1,4 @@
+import type { IWeatherAdapter } from "./WeatherAdapter";
 import { WeatherAdapter } from './WeatherAdapter';
 import { MockWeatherAdapter } from './mocks/MockWeatherAdapter';
 
